@@ -18,7 +18,7 @@ gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.5', require: false
 gem 'uglifier'
-gem 'jquery-rails', '4.3.1'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
