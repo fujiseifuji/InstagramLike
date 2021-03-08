@@ -19,6 +19,10 @@ gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.5', require: false
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

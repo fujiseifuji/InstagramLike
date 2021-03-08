@@ -28,7 +28,7 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     margin-top: 50px;
   }
 }
@@ -77,6 +77,14 @@ p {
   }
 }
 
+.logout {
+ padding-top: 10px;
+}
+
+.search {
+  padding-top: 12px;
+  padding-left: 12px;
+}
 /* footer */
 
 footer {
@@ -197,6 +205,9 @@ aside {
   padding: 0;
 }
 
+.btn {
+  width:100%;
+}
 
 /* forms */
 
@@ -258,12 +269,12 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
+    padding: 10px 10px;
     border-top: 1px solid #e8e8e8;
   }
   .user {
     margin-top: 5em;
-    padding-top: 0;
+    padding-top: 0;    
   }
   .content {
     display: block;
@@ -292,7 +303,7 @@ aside {
   }
 }
 
-span.image {
+span.picture {
   margin-top: 10px;
   input {
     border: 0;

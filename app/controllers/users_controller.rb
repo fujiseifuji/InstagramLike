@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  protect_from_forgery :except => [:destroy]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
                                         :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
@@ -20,9 +21,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      flash[:info] = "アカウントが作成されました"
+      redirect_to @user
     else
       render 'new'
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "プロフィールが更新されました"
       redirect_to @user
     else
       render 'edit'
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "ユーザーを削除しました。"
     redirect_to users_url
   end
 
@@ -62,11 +62,28 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.none
+    end
+  end
+
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :content)
+    end
+
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください。"
+        redirect_to login_url
+      end
     end
     
     # 正しいユーザーかどうか確認

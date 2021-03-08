@@ -77,6 +77,10 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def password_change_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
   # ユーザーのステータスフィードを返す
   def feed
     following_ids = "SELECT followed_id FROM relationships

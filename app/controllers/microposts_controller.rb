@@ -6,8 +6,8 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      flash[:success] = "写真を投稿しました！"
+      redirect_to @current_user
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
@@ -16,7 +16,7 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "投稿を削除しました。"
     redirect_to request.referrer || root_url
   end
 

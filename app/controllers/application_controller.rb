@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :email, :encrypted_password, :name, :profile, :occupation, :position])
+  end
     # ユーザーのログインを確認する
     def logged_in_user
       unless logged_in?
